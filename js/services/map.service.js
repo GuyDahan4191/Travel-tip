@@ -84,9 +84,3 @@ function goToSearchLocation(locSearch) {
         })
         .catch(err => console.log(err))
 }
-
-// function setCenterToUserLoc({ coords }) {
-//     const { latitude: lat, longitude: lng } = coords
-//     console.log('lat,lng', lat, lng)
-//     gMap.setCenter({ lat, lng })
-// }

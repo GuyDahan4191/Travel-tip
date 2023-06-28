@@ -123,3 +123,4 @@ function renderMarkers(places) {
     console.log(window.markers)
 }
 
+
