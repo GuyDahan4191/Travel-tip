@@ -12,6 +12,7 @@ export const locService = {
 >>>>>>> 547b298f33140e73b9c757db6bba1cc7c49032a9
 }
 
+<<<<<<< HEAD
 ////////////////////////////////////////////////////////////////////
 
 <<<<<<< HEAD
@@ -21,6 +22,8 @@ const locs = [
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 =======
+=======
+>>>>>>> 5097047c32772df81adb6c528a5827d155bb4b46
 const LOCATION_KEY = 'locationDB'
 
 const locs = _createLocations
