@@ -9,6 +9,8 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onPanToUserLoc = onPanToUserLoc
+window.setCenterToUserLoc = setCenterToUserLoc
 
 ////////////////////////////////////////////////////////////////////
 
@@ -62,4 +64,9 @@ function onPanToUserLoc() {
     navigator.geolocation.getCurrentPosition(mapService.setCenterToUserLoc)
 }
 
+function setCenterToUserLoc({ coords }) {
+    const { latitude: lat, longitude: lng } = coords
+    console.log('lat,lng', lat, lng)
+    gMap.setCenter({ lat, lng })
+  }
 

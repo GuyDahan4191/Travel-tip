@@ -56,3 +56,4 @@ function setCenterToUserLoc({ coords }) {
     console.log('lat,lng', lat, lng)
     gMap.setCenter({ lat, lng })
 }
+
