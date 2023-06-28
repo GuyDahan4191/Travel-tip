@@ -36,7 +36,6 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng)
 }
 
-
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
     const API_KEY = 'AIzaSyBhvpuMRtf5WHkvqgU3_jjbE3gC5La_mKI&callback=initMap' //DONE: Enter your API Key
