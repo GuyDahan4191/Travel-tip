@@ -9,8 +9,6 @@ export const locService = {
     deleteLocation,
 }
 
-////////////////////////////////////////////////////////////////////
-
 const LOCATION_KEY = 'locationDB'
 
 const locs = _createLocations
