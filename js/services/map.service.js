@@ -1,7 +1,8 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    setCenterToUserLoc
 }
 
 
@@ -39,7 +40,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = '' //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyBhvpuMRtf5WHkvqgU3_jjbE3gC5La_mKI' //DONE: Enter your API Key
     var elGoogleApi = document.createElement('script')
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
     elGoogleApi.async = true
@@ -49,4 +50,10 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function setCenterToUserLoc({ coords }) {
+    const { latitude: lat, longitude: lng } = coords
+    console.log('lat,lng', lat, lng)
+    gMap.setCenter({ lat, lng })
 }
