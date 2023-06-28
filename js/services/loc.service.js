@@ -9,13 +9,24 @@ export const locService = {
     deleteLocation,
 }
 
+
+const locs = [
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
+]
+
 const LOCATION_KEY = 'locationDB'
 
+<<<<<<< HEAD
 // const locs = _createLocations
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
+=======
+// const locs = _createLocations()
+
+>>>>>>> 19c03c6fbd4eaa0f6608b89ba1d7795cbf1948cc
 
 function getLocs() {
     return new Promise((resolve, reject) => {

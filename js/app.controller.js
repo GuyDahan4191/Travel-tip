@@ -57,3 +57,9 @@ function onPanTo() {
     console.log('Panning the Map')
     mapService.panTo(35.6895, 139.6917)
 }
+
+function onPanToUserLoc() {
+    navigator.geolocation.getCurrentPosition(mapService.setCenterToUserLoc)
+}
+
+
