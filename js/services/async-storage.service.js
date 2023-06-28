@@ -59,11 +59,6 @@ function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 
-function _load(key) {
-    const json = localStorage.getItem(key)
-    return JSON.parse(json)
-}
-
 function _makeId(length = 5) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

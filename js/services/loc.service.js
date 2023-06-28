@@ -2,12 +2,15 @@
 
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import { regStorageService } from './storage.service.js'
 
 export const locService = {
     getLocs,
     addLoc,
     deleteLoc,
 }
+
+const LOCATION_KEY = 'locationDB'
 
 // const locs = _createLocs()
 const locs = [
@@ -31,9 +34,6 @@ const locs = [
     }
 ]
 
-const LOCATION_KEY = 'locationDB'
-
-
 function getLocs() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -44,8 +44,8 @@ function getLocs() {
 
 //////////////////////////////  CRUDL  ////////////////////////////
 
-function addLoc(loc, name) {
-    locs.push(_createNewLoc(loc, name))
+function addLoc(name, loc) {
+    locs.push(_createNewLoc(name, loc))
     storageService.save(LOCATION_KEY, locs)
 }
 
@@ -68,15 +68,16 @@ function _createNewLoc(name, lat, lng, weather = "cold") {
 }
 
 function _createLocs() {
-    let locs = storageService.load(LOCATION_KEY)
+    let locs = regStorageService.load(LOCATION_KEY)
 
     if (!locs || !locs.length) {
         locs = [
-            _createNewLoc('Greatplace', { lat: 32.047104, lng: 34.832384 }),
-            _createNewLoc('Neveragain', { lat: 32.047201, lng: 34.832581 },),
+            _createNewLoc('Greatplace', 32.047104, 34.832384),
+            _createNewLoc('Neveragain', 32.047201, 34.832581)
         ]
     }
-    storageService.save(LOCATION_KEY, locs)
+    regStorageService.save(LOCATION_KEY, locs)
+    console.log('locs:', locs)
     return locs
 }
 

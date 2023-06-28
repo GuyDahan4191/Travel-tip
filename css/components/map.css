@@ -1,4 +1,18 @@
-#map {
+.map {
     width: 50%;
     height: 400px;
+    grid-row: 4/6;
+    grid-column: 2/3;
+}
+
+.map-btns {
+    grid-row: 6/7;
+    grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    grid-row: 2/3;
+    grid-column: 2/3;
 }

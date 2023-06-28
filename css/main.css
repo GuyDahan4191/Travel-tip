@@ -1,12 +1,14 @@
 /* BASIC */
 @import 'basic/base.css';
 @import 'basic/helpers.css';
+@import 'basic/layout.css';
 
 /* COMPONENTS  */
 @import 'components/footer.css';
 @import 'components/header.css';
 @import 'components/locations.css';
 @import 'components/map.css';
+@import 'components/weather.css';
 
 /* SETUP  */
 

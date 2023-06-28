@@ -2,9 +2,11 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    // setCenterToUserLoc
+    goToUserPos,
+    goToSearchLocation
 }
 
+const API_KEY = 'AIzaSyBhvpuMRtf5WHkvqgU3_jjbE3gC5La_mKI' //DONE: Enter your API Key
 
 // Var that is used throughout this Module (not global)
 var gMap
@@ -47,7 +49,6 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyBhvpuMRtf5WHkvqgU3_jjbE3gC5La_mKI' //DONE: Enter your API Key
     var elGoogleApi = document.createElement('script')
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
     elGoogleApi.async = true
@@ -57,6 +58,31 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function goToUserPos() {
+    if (!navigator.geolocation) return
+    return new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrPos(resolve, reject)
+    ).then(res => {
+        console.log('lat:', res.coords.latitude)
+        console.log('lng:', res.coords.longitude)
+        return {
+            lat: res.coords.latitude,
+            lng: res.coords.longitude,
+        }
+    })
+}
+
+function goToSearchLocation(locSearch) {
+    console.log(locSearch)
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${locSearch}&key=${API_KEY}`
+    return fetch(url)
+        .then((res) => {
+            console.log(res)
+            // need to fill HERE
+        })
+        .catch(err => console.log(err))
 }
 
 // function setCenterToUserLoc({ coords }) {

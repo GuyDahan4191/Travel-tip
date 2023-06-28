@@ -1,0 +1,12 @@
+.location-table {
+    width: 480px;
+    border: 1px, solid, black;
+    grid-column: 1/2;
+    grid-row: 5/6;
+    margin: 0;
+    border: 1px solid black;
+}
+
+.location-table td {
+    width: 120px;
+}

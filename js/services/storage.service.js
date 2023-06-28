@@ -1,6 +1,6 @@
 ///////////////////////////  import-export  ///////////////////////
 
-export const storageService = {
+export const regStorageService = {
     save: saveToStorage,
     load: loadFromStorage,
 }
