@@ -2,13 +2,17 @@
 
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
-import { storageService } from './services/storage.service.js'
 
 window.onload = onInit
 window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onRemoveLoc = onRemoveLoc
+window.onAddLoc = onAddLoc
+Window.renderLocs = renderLocs
+
+
 
 ////////////////////////////////////////////////////////////////////
 
@@ -36,8 +40,9 @@ function onAddMarker() {
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
+            renderLocs(locs)
+            // console.log('Locations:', locs)
+            // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
         })
 }
 
@@ -62,4 +67,38 @@ function onPanToUserLoc() {
     navigator.geolocation.getCurrentPosition(mapService.setCenterToUserLoc)
 }
 
+
+
+function onRemoveLoc(locId) {
+    // const id = prompt('Enter id')
+    locService.remove(locId)
+        .then(() => renderLocs())
+}
+
+function onAddLoc() {
+    const locName = prompt('Enter name')
+    const newLoc = locService.addLoc(locName)
+    locService.save(newLoc)
+        .then(renderLocs)
+}
+
+function renderLocs(locs) {
+    console.log('rendering...')
+    console.log('locs:', locs)
+    var strHTMLs = ''
+
+    locs.forEach(location => {
+        strHTMLs += `<tr>
+                        <td>${location.name}</td>
+                        <td>${location.lat}</td>
+                        <td>${location.lng}</td>
+                        <><button onclick="mapService.panTo(${location.lat},${location.lng})">Go</button>
+                        <button onclick="locService.deleteLocation(${location.id})">Delete</button></td>
+                        </tr>`
+    })
+    document.querySelector('.location-table').innerHTML += strHTMLs
+    //<td>${location.id}</td>
+    // <td>${location.createdAt}</td>
+    // <td>${location.updatedAt}</td>
+}
 

@@ -1,5 +1,4 @@
-///////////////////////////////  import-export  /////////////////////
-import { utilService } from './util.service.js'
+/////////////////////////  import-export  /////////////////////
 
 export const storageService = {
     post,   // Create
@@ -8,6 +7,8 @@ export const storageService = {
     remove, // Delete
     query,  // List 
 }
+
+/////////////////////////  async CRUDL  /////////////////////
 
 function query(entityType, delay = 500) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
@@ -50,4 +51,24 @@ function remove(entityType, entityId) {
         entities.splice(idx, 1)
         _save(entityType, entities)
     })
+}
+
+/////////////////////////  privat _functions  /////////////////////
+
+function _save(entityType, entities) {
+    localStorage.setItem(entityType, JSON.stringify(entities))
+}
+
+function _load(key) {
+    const json = localStorage.getItem(key)
+    return JSON.parse(json)
+}
+
+function _makeId(length = 5) {
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return txt
 }

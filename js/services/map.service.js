@@ -2,7 +2,7 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    setCenterToUserLoc
+    // setCenterToUserLoc
 }
 
 
@@ -19,7 +19,15 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
-            console.log('Map!', gMap)
+            console.log('Map1!', gMap)
+            gMap.addListener('click', ev => {
+                const lat = ev.latLng.lat()
+                const lng = ev.latLng.lng()
+
+                addMarker(ev.latLng)
+                panTo(lat, lng)
+            })
+            console.log('Map2!', gMap)
         })
 }
 
@@ -51,8 +59,8 @@ function _connectGoogleApi() {
     })
 }
 
-function setCenterToUserLoc({ coords }) {
-    const { latitude: lat, longitude: lng } = coords
-    console.log('lat,lng', lat, lng)
-    gMap.setCenter({ lat, lng })
-}
+// function setCenterToUserLoc({ coords }) {
+//     const { latitude: lat, longitude: lng } = coords
+//     console.log('lat,lng', lat, lng)
+//     gMap.setCenter({ lat, lng })
+// }
